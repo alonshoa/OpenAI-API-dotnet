@@ -53,7 +53,9 @@ namespace OpenAI_API
 			string jsonContent = JsonConvert.SerializeObject(request, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
 			var stringContent = new StringContent(jsonContent, UnicodeEncoding.UTF8, "application/json");
 
-			var requestUri = request.Model != null ? $"https://api.openai.com/v1/completions" : $"https://api.openai.com/v1/engines/{Api.UsingEngine.EngineName}/completions";
+			var requestUri = request.Model != null ?
+				$"https://api.openai.com/v1/completions" : 
+				$"https://api.openai.com/v1/engines/{Api.UsingEngine.EngineName}/completions";
 
 			var response = await client.PostAsync(requestUri, stringContent);
 			if (response.IsSuccessStatusCode)
