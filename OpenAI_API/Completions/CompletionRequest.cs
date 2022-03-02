@@ -140,6 +140,12 @@ namespace OpenAI_API
 		}
 
 		/// <summary>
+		/// Fine-tuning model. This is only used for fine tuning purpose, if this model is set the request url change
+		/// </summary>
+		[JsonProperty("model")]
+		public string Model { get; set; } = null;
+
+		/// <summary>
 		/// Cretes a new, empty <see cref="CompletionRequest"/>
 		/// </summary>
 		public CompletionRequest()
@@ -163,6 +169,7 @@ namespace OpenAI_API
 			this.Logprobs = basedOn.Logprobs;
 			this.Echo = basedOn.Echo;
 			this.MultipleStopSequences = basedOn.MultipleStopSequences;
+			this.Model = basedOn.Model;
 		}
 
 		/// <summary>
@@ -186,6 +193,7 @@ namespace OpenAI_API
 		/// <param name="frequencyPenalty">The scale of the penalty for how often a token is used.  Should generally be between 0 and 1, although negative numbers are allowed to encourage token reuse.</param>
 		/// <param name="logProbs">Include the log probabilities on the logprobs most likely tokens, which can be found in <see cref="CompletionResult.Choices"/> -> <see cref="Choice.Logprobs"/>. So for example, if logprobs is 10, the API will return a list of the 10 most likely tokens. If logprobs is supplied, the API will always return the logprob of the sampled token, so there may be up to logprobs+1 elements in the response.</param>
 		/// <param name="echo">Echo back the prompt in addition to the completion.</param>
+		/// <param name="model">Fine-tuned model</param>
 		/// <param name="stopSequences">One or more sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence.</param>
 		public CompletionRequest(string prompt,
 			int? max_tokens = null,
@@ -196,6 +204,7 @@ namespace OpenAI_API
 			double? frequencyPenalty = null,
 			int? logProbs = null,
 			bool? echo = null,
+			string model = null,
 			params string[] stopSequences)
 		{
 			this.Prompt = prompt;
@@ -207,6 +216,7 @@ namespace OpenAI_API
 			this.FrequencyPenalty = frequencyPenalty;
 			this.Logprobs = logProbs;
 			this.Echo = echo;
+			this.Model = model;
 			this.MultipleStopSequences = stopSequences;
 		}
 
