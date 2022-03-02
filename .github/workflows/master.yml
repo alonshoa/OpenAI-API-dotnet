@@ -17,7 +17,6 @@ jobs:
     env:
       BUILD_CONFIG: 'Release'
       SOLUTION: 'OpenAI_API.sln'
-      TEST_OPENAI_SECRET_KEY: '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'
 
     runs-on: ubuntu-latest
 
