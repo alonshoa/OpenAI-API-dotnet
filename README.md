@@ -1,3 +1,5 @@
+# This Fork contains a version with the Edit (beta) api (Edit only, did not implemented the insert)
+
 # C#/.NET SDK for accessing the OpenAI GPT-3 API 
 
 A simple C# .NET wrapper library to use with OpenAI's GPT-3 API.  More context [on my blog](https://rogerpincombe.com/openai-dotnet-api).
