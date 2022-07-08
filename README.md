@@ -72,6 +72,36 @@ var result = await api.Completions.CreateCompletionAsync("One Two Three One Two"
 ```
 You can create your `CompletionRequest` ahead of time or use one of the helper overloads for convenience.  It returns a `CompletionResult` which is mostly metadata, so use its `.ToString()` method to get the text if all you want is the completion.
 
+### Edit
+The Edit API is accessed via `OpenAIAPI.Edit`:
+
+```csharp
+EditResponse GenerateEditAsync(CompletionRequest request)
+
+// for example
+var result = await api.Edit.GenerateEditAsync(new EditRequest(){instruction ="some instruction",input="input code or text"});
+
+```
+The EditReqquest has thses parameters
+```
+        public string model { get; set; }
+        public string instruction { get; set; }
+        public string input { get; set; }
+        public int n { get; set; }
+        public float temperature { get; set; }
+        public float top_p { get; set; }
+```
+and it returns
+```
+    public class EditResponse
+    {
+        [DataMember]
+        public string object1 { get; set; }
+        public int created { get; set; }
+        public List<Choice> choices { get; set; }
+    }
+```
+
 #### Streaming
 Streaming allows you to get results are they are generated, which can help your application feel more responsive, especially on slow models like Davinci.
 
